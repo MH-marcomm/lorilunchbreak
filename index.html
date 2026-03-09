@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Midtown Edit — Yonge & Eglinton</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:     #FFFFFF;
+  --off-white: #F7F5F2;
+  --paper:     #F0EDE8;
+  --ink:       #1A1917;
+  --ink2:      #2E2C29;
+  --muted:     #8A877F;
+  --muted2:    #B8B4AC;
+  --border:    #E4E0D8;
+  --border-hi: #D0CBC0;
+  --orange:    #D4006A;
+  --orange-l:  #E0338A;
+  --orange-bg: rgba(212,0,106,0.07);
+  --orange-bd: rgba(212,0,106,0.18);
+  --teal:      #3D7A74;
+  --teal-l:    #4E9990;
+  --teal-bg:   rgba(61,122,116,0.08);
+  --teal-bd:   rgba(61,122,116,0.2);
+  --amber:     #C49A2A;
+  --text:      #3A3733;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--text);
+  font-family: 'Figtree', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 62px;
+}
+.logo { display: flex; align-items: baseline; gap: 10px; }
+.logo-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 0.07em;
+  color: var(--ink); line-height: 1;
+}
+.logo-dot { color: var(--orange); }
+.logo-loc {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+}
+.my-list-btn {
+  font-family: 'Figtree', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--ink); color: white; border: none;
+  padding: 0 20px; height: 36px;
+  cursor: pointer; display: flex; align-items: center; gap: 9px;
+  transition: background 0.15s; border-radius: 2px;
+}
+.my-list-btn:hover { background: var(--ink2); }
+.hdr-badge {
+  background: var(--orange); color: white;
+  font-size: 10px; font-weight: 700;
+  border-radius: 50%; width: 18px; height: 18px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--off-white);
+  padding: 64px 40px 56px;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.hero-rule {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--teal) 100%);
+}
+.hero-bg-text {
+  position: absolute; bottom: -20px; right: -10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(120px, 18vw, 220px);
+  letter-spacing: -0.02em; line-height: 1;
+  color: rgba(0,0,0,0.04);
+  pointer-events: none; user-select: none;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 20px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; display: block;
+  width: 24px; height: 1px; background: var(--orange); opacity: 0.5;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 7vw, 84px);
+  letter-spacing: 0.03em; line-height: 0.92;
+  color: var(--ink); margin-bottom: 20px;
+}
+.hero-title em {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic; color: var(--orange);
+  font-size: 0.85em; letter-spacing: 0;
+}
+.hero-desc {
+  font-size: 14px; line-height: 1.75;
+  color: var(--muted);
+  max-width: 500px; margin-bottom: 32px;
+}
+.hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.hero-pill {
+  border: 1px solid var(--border-hi);
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 11.5px; color: var(--muted);
+  font-weight: 400; letter-spacing: 0.01em;
+  background: white;
+}
+.hero-pill.hi {
+  background: var(--orange-bg);
+  border-color: var(--orange-bd);
+  color: var(--orange);
+}
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  position: sticky; top: 62px; z-index: 190;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  display: flex; align-items: stretch; height: 50px;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+.fp {
+  flex-shrink: 0; padding: 0 18px;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11.5px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer;
+  border: none; background: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  font-family: 'Figtree', sans-serif; white-space: nowrap;
+}
+.fp:hover { color: var(--ink); }
+.fp.active { color: var(--orange); border-bottom-color: var(--orange); font-weight: 600; }
+.fp-icon { font-size: 13px; }
+
+/* ── MAIN ── */
+.main {
+  max-width: 1200px; margin: 0 auto;
+  padding: 40px 32px 100px;
+}
+
+/* ── SECTION ── */
+.sec-wrap { margin-bottom: 52px; }
+.sec-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.sec-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.sec-dot.orange { background: var(--orange); }
+.sec-dot.teal   { background: var(--teal); }
+.sec-dot.amber  { background: var(--amber); }
+.sec-emoji { font-size: 20px; }
+.sec-info { flex: 1; }
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 0.07em;
+  color: var(--ink); line-height: 1;
+}
+.sec-sub {
+  font-size: 11.5px;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic; color: var(--muted);
+  margin-top: 2px;
+}
+.sec-count {
+  font-size: 11px; color: var(--muted2);
+  letter-spacing: 0.08em; font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 18px 14px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  animation: fadeUp 0.35s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card:hover {
+  border-color: var(--border-hi);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+/* corner badges */
+.cbadge {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 3px;
+  white-space: nowrap;
+}
+.cbadge-budget {
+  background: var(--teal-bg); border: 1px solid var(--teal-bd); color: var(--teal);
+}
+.cbadge-mum {
+  background: rgba(180,100,130,0.08); border: 1px solid rgba(180,100,130,0.2); color: #B46482;
+}
+
+.card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 6px;
+}
+.card-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px; color: var(--ink);
+  line-height: 1.25; flex: 1; padding-right: 10px;
+}
+.heart {
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; padding: 0; flex-shrink: 0;
+  transition: transform 0.15s; color: var(--muted2); line-height: 1;
+}
+.heart:hover { transform: scale(1.25); }
+.heart.on { color: var(--orange); }
+
+/* walk + address row */
+.card-meta-top {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 9px; flex-wrap: wrap;
+}
+.walk-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 600;
+  color: var(--teal); letter-spacing: 0.02em;
+}
+.walk-far { color: var(--orange); }
+.addr-text { font-size: 11px; color: var(--muted); }
+.sep { color: var(--muted2); font-size: 10px; }
+
+.card-meta {
+  display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap; margin-bottom: 10px;
+}
+.stars { color: var(--amber); font-size: 12px; }
+.rating-num { font-size: 12px; font-weight: 600; color: var(--ink2); }
+.rating-ct { font-size: 11px; color: var(--muted); }
+.pill {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.07em; padding: 3px 8px;
+  border-radius: 20px; text-transform: uppercase;
+}
+.pill-open { background: var(--teal-bg); color: var(--teal); }
+.pill-hours {
+  background: var(--off-white); color: var(--muted);
+  font-weight: 400; text-transform: none;
+  font-size: 10.5px; letter-spacing: 0;
+}
+
+.quote {
+  font-size: 12px; line-height: 1.65;
+  color: var(--muted);
+  font-style: italic;
+  font-family: 'DM Serif Display', serif;
+  border-left: 2px solid var(--orange);
+  padding-left: 10px; margin-bottom: 14px;
+}
+
+.card-actions {
+  display: flex; gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.btn {
+  flex: 1; padding: 9px 0;
+  border-radius: 5px;
+  border: 1px solid var(--border-hi);
+  background: var(--off-white);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  font-family: 'Figtree', sans-serif;
+  color: var(--ink2); cursor: pointer;
+  text-decoration: none; display: flex;
+  align-items: center; justify-content: center; gap: 5px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn:hover { background: var(--paper); border-color: var(--border-hi); }
+.btn.cta {
+  background: var(--orange); border-color: var(--orange); color: white;
+}
+.btn.cta:hover { background: #BC5323; border-color: #BC5323; }
+
+/* ── MODAL ── */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,25,23,0.55);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  z-index: 500; align-items: center; justify-content: center; padding: 20px;
+}
+.overlay.open { display: flex; }
+.modal {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 100%; max-width: 540px;
+  max-height: 84vh; overflow-y: auto;
+  padding: 36px; position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+.modal-rule {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(90deg, var(--orange), var(--teal));
+}
+.modal-x {
+  position: absolute; top: 18px; right: 20px;
+  background: none; border: none; color: var(--muted);
+  font-size: 20px; cursor: pointer; line-height: 1;
+}
+.modal-eyebrow {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 6px; margin-top: 6px;
+}
+.modal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px; letter-spacing: 0.06em;
+  color: var(--ink); margin-bottom: 24px;
+}
+.modal-list { display: flex; flex-direction: column; gap: 10px; }
+.modal-item {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.mi-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 15px; color: var(--ink); margin-bottom: 3px;
+}
+.mi-meta { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.mi-actions { display: flex; gap: 7px; flex-shrink: 0; }
+.mi-call {
+  font-size: 11px; font-weight: 600;
+  padding: 7px 13px; background: var(--orange);
+  color: white; border-radius: 4px;
+  text-decoration: none; display: flex; align-items: center; gap: 4px; white-space: nowrap;
+}
+.mi-map {
+  font-size: 11px; font-weight: 500;
+  padding: 7px 13px; border: 1px solid var(--border-hi);
+  color: var(--text); border-radius: 4px; background: white;
+  text-decoration: none; display: flex; align-items: center; gap: 4px; white-space: nowrap;
+}
+.modal-empty {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic; font-size: 18px;
+  color: var(--muted2); text-align: center; padding: 36px 0;
+}
+
+/* ── LOCATION BAR ── */
+.loc-bar {
+  background: var(--teal-bg);
+  border-bottom: 1px solid var(--teal-bd);
+  padding: 0 32px;
+  height: 0; overflow: hidden;
+  transition: height 0.3s ease;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.loc-bar.visible { height: 42px; }
+.loc-bar-left {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--teal); font-weight: 500;
+}
+.loc-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--teal); flex-shrink: 0;
+  animation: pulse 1.8s infinite;
+}
+.loc-dot.searching { background: var(--amber); }
+.loc-dot.error     { background: var(--orange); animation: none; }
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.75); }
+}
+.loc-bar-right {
+  font-size: 11px; color: var(--teal);
+  font-style: italic; font-family: 'DM Serif Display', serif;
+}
+
+/* ── LOCATION TOGGLE in header ── */
+.loc-btn {
+  font-family: 'Figtree', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--off-white); color: var(--muted);
+  border: 1px solid var(--border-hi);
+  padding: 0 14px; height: 36px; border-radius: 2px;
+  cursor: pointer; display: flex; align-items: center; gap: 7px;
+  transition: all 0.15s; white-space: nowrap;
+}
+.loc-btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-bg); }
+.loc-btn.active {
+  background: var(--teal-bg); color: var(--teal);
+  border-color: var(--teal-bd);
+}
+.loc-btn .loc-btn-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--muted2); flex-shrink: 0; transition: background 0.2s;
+}
+.loc-btn.active .loc-btn-dot { background: var(--teal); animation: pulse 1.8s infinite; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(70px);
+  background: var(--ink); color: white;
+  padding: 12px 24px; border-radius: 30px;
+  font-size: 13px; font-weight: 500;
+  z-index: 999; opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none; white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  header { padding: 0 18px; }
+  .filter-bar { padding: 0 8px; }
+  .fp { padding: 0 12px; font-size: 11px; }
+  .main { padding: 24px 16px 60px; }
+  .hero { padding: 44px 20px 40px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <span class="logo-name">The Midtown Edit<span class="logo-dot">.</span></span>
+    <span class="logo-loc">Yonge &amp; Eglinton</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="loc-btn" id="locBtn" onclick="toggleLocation()">
+      <span class="loc-btn-dot"></span> 📍 Use My Location
+    </button>
+    <button class="my-list-btn" onclick="openModal()">
+      ♥ My List <span class="hdr-badge" id="hdr-count">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- LOCATION STATUS BAR -->
+<div class="loc-bar" id="locBar">
+  <div class="loc-bar-left">
+    <span class="loc-dot" id="locDot"></span>
+    <span id="locMsg">Getting your location…</span>
+  </div>
+  <span class="loc-bar-right" id="locSub"></span>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="fp active" onclick="doFilter(this,'all')"><span class="fp-icon">⚡</span> All</button>
+  <button class="fp" onclick="doFilter(this,'recharge')"><span class="fp-icon">🌸</span> Recharge</button>
+  <button class="fp" onclick="doFilter(this,'coffee')"><span class="fp-icon">☕</span> Coffee</button>
+  <button class="fp" onclick="doFilter(this,'food')"><span class="fp-icon">🥗</span> Food</button>
+  <button class="fp" onclick="doFilter(this,'beauty')"><span class="fp-icon">💅</span> Beauty</button>
+  <button class="fp" onclick="doFilter(this,'fitness')"><span class="fp-icon">🏋️</span> Fitness</button>
+  <button class="fp" onclick="doFilter(this,'dental')"><span class="fp-icon">🦷</span> Dental</button>
+  <button class="fp" onclick="doFilter(this,'errand')"><span class="fp-icon">🛍️</span> Errands</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-bg-text">Y&amp;E</div>
+  <div class="hero-eyebrow">Curated for your lunch hour pleasure</div>
+  <h1 class="hero-title">Your lunch break,<br><em>elevated.</em></h1>
+  <p class="hero-desc">The best-rated spots within walking distance of 20 Eglinton Ave West — vetted by thousands of real reviews. Every card shows your walk time. From a 5-star massage to a $7 hand roll. You deserve all of it.</p>
+  <div class="hero-pills">
+    <span class="hero-pill hi">🚶 Walk times on every card</span>
+    <span class="hero-pill hi">♥ Save favourites &amp; call direct</span>
+    <span class="hero-pill">💚 Budget picks flagged</span>
+    <span class="hero-pill">🌸 Mum picks flagged</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main" id="mainEl"></main>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-rule"></div>
+    <button class="modal-x" onclick="closeModal()">✕</button>
+    <div class="modal-eyebrow">Your saved places</div>
+    <div class="modal-title">My List</div>
+    <div class="modal-list" id="modal-list"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── ALL PLACES ─────────────────────────────────────────────────────────
+const DATA = [
+
+  // RECHARGE
+  {id:'r1',lat:43.7077,lng:-79.3949,cat:'recharge',catLabel:'Recharge',name:'Renaissance Midtown Massage',addr:'120 Eglinton Ave E, Ste 603',walk:6,rating:5.0,ct:88,phone:'+16474550296',maps:'https://maps.google.com/?q=Renaissance+Midtown+Massage+Toronto',hours:'Daily 10am–8pm',budget:false,mum:true,quote:'Mina has blessed hands. You go in stressed and tense, you leave lighter and renewed. The essential oils, the warmth — a reset you didn\'t know you needed.'},
+  {id:'r2',lat:43.7072,lng:-79.3971,cat:'recharge',catLabel:'Recharge',name:'Nexus Massage & Rehab',addr:'40 Eglinton Ave E, Unit 603',walk:4,rating:4.9,ct:1349,phone:'+16475576267',maps:'https://maps.google.com/?q=Nexus+Massage+Rehab+Toronto',hours:'Mon–Fri 8am–9pm, Sat–Sun 8am–7pm',budget:false,mum:false,quote:'Easy to book last-minute. Lucia targets your specific complaints with real depth. RMT, physio, chiro all under one roof — 1,349 five-star reviews say it all.'},
+  {id:'r3',lat:43.7067,lng:-79.3968,cat:'recharge',catLabel:'Recharge',name:'Crown Head Spa',addr:'90 Holly St',walk:4,rating:4.9,ct:74,phone:'+14164826288',maps:'https://maps.google.com/?q=Crown+Head+Spa+Toronto',hours:'Daily 10am–10pm',budget:false,mum:true,quote:'Scalp massage, hair wash, heavenly head scratches. You leave feeling completely renewed and surprisingly emotional about how good it was. Pure indulgence.'},
+  {id:'r4',lat:43.7077,lng:-79.3949,cat:'recharge',catLabel:'Recharge',name:'Healthy Foot Spa (RMT)',addr:'120 Eglinton Ave E, Ste 103',walk:6,rating:4.7,ct:87,phone:'+14169326888',maps:'https://maps.google.com/?q=Healthy+Foot+Spa+Massage+Toronto',hours:'Daily 10am–9pm',budget:true,mum:false,quote:'Best prices in the neighbourhood for reflexology and RMT. Monica works pressure points like magic. Hot green tea served during your session. Honestly heavenly.'},
+  {id:'r5',lat:43.7127,lng:-79.3998,cat:'recharge',catLabel:'Recharge',name:'Vibe Ten Yoga Studio',addr:'2526 Yonge St',walk:9,rating:4.9,ct:107,phone:null,maps:'https://maps.google.com/?q=Vibe+Ten+Studio+Toronto',hours:'Mon–Fri 9am–8:30pm, Sat–Sun from 8:30am',budget:false,mum:true,quote:'The most welcoming yoga studio in midtown. Instructors greet you by name from your first class. Sauna and cold plunge on-site. A genuinely transformative community.'},
+
+  // COFFEE
+  {id:'c1',lat:43.7134,lng:-79.4,cat:'coffee',catLabel:'Coffee',name:'Himalayan Coffee House',addr:'2552 Yonge St',walk:10,rating:4.7,ct:769,phone:'+14164856464',maps:'https://maps.google.com/?q=Himalayan+Coffee+House+Toronto',hours:'Mon–Fri 7:30am–5pm, Sat–Sun 9am–5pm',budget:true,mum:true,quote:'Custom latte art on every cup — they\'ll draw your pet from a photo. Smooth rich espresso, gorgeous Tibetan decor. A tiny gem that punches well above its weight.'},
+  {id:'c2',lat:43.708,lng:-79.3931,cat:'coffee',catLabel:'Coffee',name:'The Coffee Bar @ The Harp',addr:'174 Eglinton Ave E',walk:8,rating:4.5,ct:1344,phone:'+14164800303',maps:'https://maps.google.com/?q=Coffee+Bar+Harp+Toronto',hours:'Mon–Fri 8am–6pm, Sat–Sun 9am–7pm',budget:true,mum:false,quote:'Cozy Irish café vibe that genuinely transports you from the city. Turkish coffee, craft lattes, great sandwiches — and a Guinness tap for when Friday calls for it.'},
+  {id:'c3',lat:43.7076,lng:-79.3947,cat:'coffee',catLabel:'Coffee',name:'Black Wolf Coffee',addr:'130 Eglinton Ave E',walk:6,rating:4.9,ct:15,phone:null,maps:'https://maps.google.com/?q=Black+Wolf+Coffee+Toronto',hours:'Daily 7am–8pm',budget:true,mum:false,quote:'New neighbourhood gem. Perfect oat lattes, Korean-style pastries, Earl Grey cream cheese scones. Relaxed and chill. An easy escape from the office grind.'},
+  {id:'c4',lat:43.703,lng:-79.3973,cat:'coffee',catLabel:'Coffee',name:'TOGO COFFEE Midtown',addr:'2095 Yonge St',walk:6,rating:4.9,ct:211,phone:'+14164408881',maps:'https://maps.google.com/?q=TOGO+COFFEE+Midtown+Toronto',hours:'Daily 10am–6:30pm',budget:true,mum:false,quote:'Sweet potato latte, pear matcha — creative drinks that aren\'t too sweet. 1-litre drinks from $7.99. Extra espresso shot is free. Genuinely delicious every time.'},
+  {id:'c5',lat:43.7073,lng:-79.399,cat:'coffee',catLabel:'Coffee',name:'Aroma Espresso Bar',addr:'2300 Yonge St (Eglinton Centre)',walk:2,rating:3.8,ct:794,phone:'+14169877288',maps:'https://maps.google.com/?q=Aroma+Espresso+Bar+Eglinton+Toronto',hours:'Mon–Fri 7:30am–7pm, Sat–Sun 9am–7pm',budget:false,mum:false,quote:'Lovely patio, fresh salads, soups and a pistachio carrot cake worth a detour. Best for a leisurely sit-down rather than a speedy grab-and-go.'},
+
+  // FOOD
+  {id:'f1',lat:43.7069,lng:-79.397,cat:'food',catLabel:'Food',name:'Evviva Breakfast & Lunch',addr:'39 Eglinton Ave E',walk:4,rating:4.8,ct:810,phone:'+14378809738',maps:'https://maps.google.com/?q=Evviva+Breakfast+Lunch+Toronto',hours:'Daily 7am–4pm (5pm weekends)',budget:false,mum:true,quote:'Feminine, European and fabulous. Fluffy pancakes, perfect eggs benny, fully vegan menu options. The team surprised one regular with a birthday waffle and candle. A proper treat.'},
+  {id:'f2',lat:43.7072,lng:-79.3967,cat:'food',catLabel:'Food',name:'Fit for Life',addr:'50 Eglinton Ave E',walk:4,rating:4.9,ct:310,phone:'+14164820615',maps:'https://maps.google.com/?q=Fit+for+Life+Toronto+Eglinton',hours:'Mon–Fri 7am–5pm',budget:true,mum:false,quote:'Egg guacamole sandwich for $5.99 — fresh, low-cal, filling. Two people eat well for under $30. Halal chicken burritos, smoothies, rice bowls. No frills, all flavour.'},
+  {id:'f3',lat:43.7031,lng:-79.3974,cat:'food',catLabel:'Food',name:'Maki Mart',addr:'2103 Yonge St',walk:6,rating:4.8,ct:60,phone:'+16478534668',maps:'https://maps.google.com/?q=Maki+Mart+Toronto',hours:'Daily 11am–8pm',budget:true,mum:false,quote:'Omakase quality in a grab-and-go format. You pick each piece — spicy salmon, fatty toro, uni. Loyalty card + free drink every 3. Best-value sushi in midtown by far.'},
+  {id:'f4',lat:43.702,lng:-79.3975,cat:'food',catLabel:'Food',name:'Lola Sushi',addr:'2070 Yonge St',walk:7,rating:4.6,ct:454,phone:'+14169320290',maps:'https://maps.google.com/?q=Lola+Sushi+Toronto',hours:'Mon–Fri 12–9pm (dinner only weekends)',budget:true,mum:false,quote:'Family-run hidden gem. Fresh sushi, generous portions, very reasonable prices. The Lola Bento is so good people forget to photograph it. Warm and welcoming couple running it.'},
+  {id:'f5',lat:43.7115,lng:-79.3991,cat:'food',catLabel:'Food',name:'Good Bite Diner',addr:'2463 Yonge St',walk:7,rating:4.5,ct:423,phone:'+14164838432',maps:'https://maps.google.com/?q=Good+Bite+Restaurant+Toronto',hours:'Daily 8am–3pm',budget:true,mum:true,quote:'Jimmy and Maria will know your name by your second visit. Free coffee refills, generous portions, legendary crispy home fries. Nostalgic Toronto diner at its best.'},
+  {id:'f6',lat:43.7047,lng:-79.4058,cat:'food',catLabel:'Food',name:'The Burger Shack',addr:'233 Eglinton Ave W',walk:6,rating:4.5,ct:1967,phone:'+14164871974',maps:'https://maps.google.com/?q=The+Burger+Shack+233+Eglinton+Ave+West+Toronto',hours:'Tue–Sun 8am–10pm (closed Mon)',budget:true,mum:false,quote:'A genuine Toronto institution. Made-to-order burgers on fresh kaiser buns, excellent onion rings, old-school booth seating. Nostalgic, charming and worth the walk west.'},
+  {id:'f7',lat:43.7091,lng:-79.3986,cat:'food',catLabel:'Food',name:'Banh Mi Boys',addr:'2365 Yonge St',walk:4,rating:4.4,ct:949,phone:'+16473453585',maps:'https://maps.google.com/?q=Banh+Mi+Boys+Yonge+Toronto',hours:'Mon–Sat 10am–9pm, Sun 12–7pm',budget:true,mum:false,quote:'Grilled chicken banh mi, five-spice pork belly bao, legendary kimchi fries. Quick, fun and packed with flavour. Bread far better than any chain. A reliable lunch staple.'},
+  {id:'f8',lat:43.7073,lng:-79.3991,cat:'food',catLabel:'Food',name:'Pickle Barrel',addr:'2300 Yonge St (Eglinton Centre)',walk:2,rating:4.3,ct:2735,phone:'+14164851244',maps:'https://maps.google.com/?q=Pickle+Barrel+Yonge+Eglinton+Toronto',hours:'Mon–Fri 11am–10/11pm, Sat–Sun from 10am',budget:false,mum:false,quote:'Toronto institution. Modern bar, solid eclectic menu, great service. Server Eugene has been there for decades and still makes every visit feel genuinely special.'},
+  {id:'f9',lat:43.7073,lng:-79.3991,cat:'food',catLabel:'Food',name:'Metro Grocery',addr:'2300 Yonge St (Eglinton Centre)',walk:2,rating:4.1,ct:2333,phone:'+14164837340',maps:'https://maps.google.com/?q=Metro+Yonge+Eglinton+Toronto',hours:'Daily 7am–10pm',budget:true,mum:true,quote:'Full grocery right downstairs. Ready-to-eat lunch, fresh fruit, or everything you need for dinner — without leaving the building. Unbeatable convenience.'},
+  {id:'f10',lat:43.7072,lng:-79.3947,cat:'food',catLabel:'Food',name:'Loblaws Eglinton',addr:'101 Eglinton Ave E',walk:6,rating:4.1,ct:2688,phone:'+14164897653',maps:'https://maps.google.com/?q=Loblaws+Eglinton+Ave+Toronto',hours:'Daily 7am–10pm',budget:false,mum:true,quote:'Bigger than Metro — lovely deli, fresh sushi counter, PC Optimum points. Great for stocking up on weekly essentials or a proper grab-and-go lunch.'},
+
+  // BEAUTY
+  {id:'b1',lat:43.7104,lng:-79.3987,cat:'beauty',catLabel:'Beauty',name:'Hair Tree Eglinton',addr:'2409 Yonge St, Unit 102',walk:6,rating:4.9,ct:163,phone:'+16474572409',maps:'https://maps.google.com/?q=Hair+Tree+Eglinton+Toronto',hours:'Daily 10am–7pm (6pm weekends)',budget:false,mum:false,quote:'Patient, attentive stylists who truly listen. Brilliant for dry, wavy and curly hair. The head massage during washing alone makes it worth the trip.'},
+  {id:'b2',lat:43.709,lng:-79.3986,cat:'beauty',catLabel:'Beauty',name:'DSQUARE Salon',addr:'2353 Yonge St, 2nd Floor',walk:4,rating:4.8,ct:336,phone:'+14169252161',maps:'https://maps.google.com/?q=DSQUARE+Salon+Toronto',hours:'Tue–Sat from 9am (Mon from 11am)',budget:false,mum:false,quote:'David\'s colour and balayage are consistently flawless — always naturally blended. Warm, welcoming atmosphere. Great value for the level of craft on offer.'},
+  {id:'b3',lat:43.7073,lng:-79.3976,cat:'beauty',catLabel:'Beauty',name:"Chagi's Nail Studio",addr:'20 Eglinton Ave E, 4th Floor',walk:3,rating:4.8,ct:102,phone:'+19428811888',maps:"https://maps.google.com/?q=Chagi's+Nail+Studio+Toronto",hours:'Mon–Sat 9:30am–7pm',budget:false,mum:true,quote:'Nails so strong and clean that clients fly in from out of town to see her. Did someone\'s wedding nails and they still travel across the city. Detail-obsessed and worth every cent.'},
+  {id:'b4',lat:43.7068,lng:-79.3983,cat:'beauty',catLabel:'Beauty',name:'Perfect Nails',addr:'Near Yonge & Eglinton subway',walk:3,rating:5.0,ct:103,phone:'+16475071767',maps:'https://maps.google.com/?q=Perfect+Nails+Yonge+Eglinton+Toronto',hours:'Daily 10am–11:30pm',budget:false,mum:false,quote:'Ensieh is a true nail artist — kind, meticulous, and makes you feel incredible. Russian manicures and bio-gel that genuinely last. 5.0 stars with 103 reviews. No notes.'},
+  {id:'b5',lat:43.7078,lng:-79.3991,cat:'beauty',catLabel:'Beauty',name:'Beauty First Spa',addr:'2300 Yonge St (Eglinton Centre)',walk:3,rating:4.7,ct:1054,phone:'+19056338118',maps:'https://maps.google.com/?q=Beauty+First+Spa+Yonge+Eglinton',hours:'Mon–Fri 10am–9pm, Sat 10am–7pm',budget:true,mum:true,quote:'Threading, facials, lash lifts and waxing all done brilliantly at fair prices. Jyoti is warm, professional and makes everything nearly pain-free. A seriously good value.'},
+  {id:'b6',lat:43.7059,lng:-79.4032,cat:'beauty',catLabel:'Beauty',name:'V Eyelash & Brow',addr:'158 Eglinton Ave W, Unit 3',walk:3,rating:4.9,ct:42,phone:'+16478603880',maps:'https://maps.google.com/?q=V+Eyelash+Brow+Toronto',hours:'Mon–Sat 10am–7:30pm',budget:false,mum:true,quote:'Vicky does lashes, brows and nails for the woman always on the go. Can finish all three in under an hour — flawlessly. 8-year loyal clients are the best review you can get.'},
+  {id:'b7',lat:43.7079,lng:-79.3918,cat:'beauty',catLabel:'Beauty',name:'Flowers of the World',addr:'191 Eglinton Ave E, Unit 106',walk:9,rating:4.9,ct:760,phone:'+14164400077',maps:'https://maps.google.com/?q=Flowers+of+the+World+Toronto+Eglinton',hours:'Mon–Fri 10am–8pm, Sat 10am–6pm',budget:false,mum:true,quote:'Buy yourself flowers — because you deserve it. Anna finds the perfect arrangement on any budget. Beautifully crafted bouquets that lift your whole week.'},
+  {id:'b8',lat:43.6994,lng:-79.397,cat:'beauty',catLabel:'Beauty',name:'Lécécé Fleur & Garden',addr:'1960 Yonge St',walk:11,rating:5.0,ct:87,phone:'+16478551472',maps:'https://maps.google.com/?q=Lecece+Fleur+Garden+Toronto',hours:'Mon–Sat 10am–6pm, Sun 10am–3pm',budget:false,mum:true,quote:'Mother-daughter florists with a fresh, creative energy unlike anywhere else. Arrangements that look straight out of Pinterest. Clear website pricing too. A little out of the way — completely worth it.'},
+
+  // FITNESS
+  {id:'fi1',lat:43.7079,lng:-79.3942,cat:'fitness',catLabel:'Fitness',name:'Sliving Studios — Reformer Pilates',addr:'150 Eglinton Ave E, Ste 406',walk:7,rating:4.9,ct:251,phone:'+16474899896',maps:'https://maps.google.com/?q=Sliving+Studios+Toronto',hours:'Mon–Fri 7am–9pm, Sat 9am–4:30pm',budget:false,mum:true,quote:'After 3 months: pelvic pain gone, stronger, more aligned, weight down naturally. Precision cueing in a warm community. Instructors genuinely care about your progress.'},
+  {id:'fi2',lat:43.7077,lng:-79.3981,cat:'fitness',catLabel:'Fitness',name:'OMJ Fitness',addr:'2295 Yonge St, Suite 2',walk:3,rating:4.9,ct:177,phone:'+14164810650',maps:'https://maps.google.com/?q=OMJ+Fitness+Toronto',hours:'Mon–Fri 6:30am–8pm, Sat–Sun 10am–1pm',budget:false,mum:false,quote:'Johnny has built something truly special. TRX, barre, circuit, dance — a genuine community. Immaculate space, wonderful energy. Consistently rated the best boutique gym in midtown.'},
+  {id:'fi3',lat:43.7077,lng:-79.3924,cat:'fitness',catLabel:'Fitness',name:'Fit Factory Midtown',addr:'161 Eglinton Ave E',walk:9,rating:4.7,ct:324,phone:'+14372669662',maps:'https://maps.google.com/?q=Fit+Factory+Midtown+Toronto',hours:'Mon–Fri 6am–9pm, Sat–Sun 9am–1pm',budget:false,mum:false,quote:'Challenging, well-coached and never boring. Great variety of class times. Coaches who are warm and genuinely invested. Stay consistent and you will see results.'},
+  {id:'fi4',lat:43.7073,lng:-79.3991,cat:'fitness',catLabel:'Fitness',name:'GoodLife Fitness',addr:'2300 Yonge St (Eglinton Centre)',walk:2,rating:4.1,ct:512,phone:'+14164831234',maps:'https://maps.google.com/?q=GoodLife+Fitness+Yonge+Eglinton+Toronto',hours:'Open 24 hours',budget:false,mum:false,quote:'Freshly renovated with more space and better flow. Clean, well-stocked, machines in great shape. Open 24/7 — perfect for the 6am sprint before school drop-off.'},
+
+  // DENTAL
+  {id:'d1',lat:43.7112,lng:-79.3997,cat:'dental',catLabel:'Dental',name:'Capitol Dentistry Midtown',addr:'2468 Yonge St',walk:7,rating:4.9,ct:464,phone:'+14164880916',maps:'https://maps.google.com/?q=Capitol+Dentistry+Midtown+Toronto',hours:'Mon–Thu 8am–5pm, Fri 8am–2pm',budget:false,mum:false,quote:'Dr. Anderson is thorough, honest and never recommends more than you need. 7-year patients rave about the care. Spotless clinic with the latest equipment.'},
+  {id:'d2',lat:43.7085,lng:-79.3989,cat:'dental',catLabel:'Dental',name:'Yonge Eglinton Dental',addr:'2345 Yonge St, Suite 202',walk:3,rating:4.9,ct:652,phone:'+14169322222',maps:'https://maps.google.com/?q=Yonge+Eglinton+Dental+Toronto',hours:'Mon–Thu 7am–8pm, Fri 7am–2pm',budget:false,mum:false,quote:'Extended hours — open until 8pm on weekdays. Caring team, no upselling, just honest care. Dr. Randy puts even the most anxious patients completely at ease.'},
+  {id:'d3',lat:43.7116,lng:-79.3992,cat:'dental',catLabel:'Dental',name:'Yonge & Eglinton Dentistry',addr:'2476 Yonge St',walk:7,rating:4.8,ct:446,phone:'+14164834343',maps:'https://maps.google.com/?q=Yonge+and+Eglinton+Dentistry+Toronto',hours:'Tue–Thu 8am–6pm, Mon 10am–6pm, Sat 9am–3pm',budget:false,mum:true,quote:'Dr. Denis and office dog Teddy will make you feel like family from day one. The most beautiful dental office you\'ve been in. Invisalign results are genuinely stunning.'},
+  {id:'d4',lat:43.7078,lng:-79.3991,cat:'dental',catLabel:'Dental',name:'Altima Yonge Eglinton Dental',addr:'2300 Yonge St, 2nd Floor',walk:2,rating:4.7,ct:356,phone:'+14163229944',maps:'https://maps.google.com/?q=Altima+Yonge+Eglinton+Dental+Toronto',hours:'Mon–Sat (10am–5/6pm)',budget:false,mum:false,quote:'Saturday availability. Dr. Kaur is brilliant and passionate. Great for wisdom teeth, complex work, and anyone who needs a weekend appointment. Warm front desk team.'},
+
+  // ERRANDS
+  {id:'e1',lat:43.7066,lng:-79.3978,cat:'errand',catLabel:'Errands',name:'Yonge + Eglinton Pharmacy',addr:'1 Eglinton Ave E, Lower Level',walk:3,rating:5.0,ct:35,phone:'+14166013727',maps:'https://maps.google.com/?q=Yonge+Eglinton+Pharmacy+Toronto',hours:'Mon–Fri 7am–7pm, Sat 9am–5pm',budget:false,mum:true,quote:'Kathe knows your name, your medications and your schedule. Local delivery available. The only pharmacy in the city that still feels genuinely personal. A rare find.'},
+  {id:'e2',lat:43.7047,lng:-79.4067,cat:'errand',catLabel:'Errands',name:'Guardian Uptown Pharmacy',addr:'243 Eglinton Ave W',walk:6,rating:4.8,ct:156,phone:'+14164855005',maps:'https://maps.google.com/?q=Guardian+Uptown+Pharmacy+Toronto',hours:'Mon–Fri 9am–6/7pm, Sat 10am–2pm',budget:false,mum:true,quote:'Female-led local pharmacy. They provide courtesy calls when your prescription needs a refill and treat you like a neighbour. Fantastic for vaccinations — never too busy.'},
+  {id:'e3',lat:43.71,lng:-79.3987,cat:'errand',catLabel:'Errands',name:'Yonge Drug Mart (Compounding)',addr:'2399 Yonge St',walk:5,rating:4.8,ct:244,phone:'+14164812444',maps:'https://maps.google.com/?q=Yonge+Drug+Mart+Toronto',hours:'Mon–Fri 8:30am–6pm, Sat 9am–2pm',budget:false,mum:false,quote:'Far better service than any chain. They keep your meds in stock, call before you run out, and treat every patient like a neighbour. Compounding available on-site.'},
+  {id:'e4',lat:43.7067,lng:-79.3978,cat:'errand',catLabel:'Errands',name:'Bestway Dry Cleaners',addr:'1 Eglinton Ave E (subway level)',walk:3,rating:4.8,ct:57,phone:'+14164873757',maps:'https://maps.google.com/?q=Bestway+Dry+Cleaners+Toronto',hours:'Mon–Fri 7am–7pm',budget:true,mum:false,quote:'Last-minute alterations? Done fast and done right. Never charge extra when they don\'t need to. The Korean lady running this place is an absolute neighbourhood legend.'},
+  {id:'e5',lat:43.7066,lng:-79.398,cat:'errand',catLabel:'Errands',name:'Fast & Good Cleaners',addr:'Eglinton TTC Station bus platform',walk:3,rating:4.5,ct:39,phone:'+14164863736',maps:'https://maps.google.com/?q=Fast+Good+Cleaners+Eglinton+Toronto',hours:'Mon–Sat (variable)',budget:true,mum:false,quote:'Pants hemmed for under $10. Best dry cleaning prices in Toronto by far. Tell the TTC attendant you\'re dropping off — they\'ll let you through for free.'},
+  {id:'e6',lat:43.7116,lng:-79.3992,cat:'errand',catLabel:'Errands',name:'Curated Market Midtown',addr:'2473 Yonge St',walk:7,rating:4.6,ct:22,phone:null,maps:'https://maps.google.com/?q=Curated+Market+Midtown+Toronto',hours:'Mon–Fri 11am–6pm, Sat 10am–5pm',budget:false,mum:true,quote:'Local artists, handmade jewelry, soaps, and genuinely thoughtful gifts. Lily made custom earring charms on the spot for one customer. Perfect when a gift needs to actually mean something.'},
+  {id:'e7',lat:43.7073,lng:-79.3991,cat:'errand',catLabel:'Errands',name:'Indigo — Yonge & Eglinton',addr:'2300 Yonge St (Eglinton Centre)',walk:2,rating:4.6,ct:2291,phone:'+14165440049',maps:'https://maps.google.com/?q=Indigo+Yonge+Eglinton+Toronto',hours:'Mon–Sat 10am–9pm, Sun 11am–7pm',budget:false,mum:true,quote:'One of the best Indigo locations in Toronto. Strong books, curated gifts, great kids section. Always find something for yourself you didn\'t know you needed.'},
+  {id:'e8',lat:43.7073,lng:-79.3991,cat:'errand',catLabel:'Errands',name:'LCBO — Yonge Eglinton Centre',addr:'2300 Yonge St (Eglinton Centre)',walk:2,rating:4.2,ct:317,phone:'+14164874858',maps:'https://maps.google.com/?q=LCBO+Yonge+Eglinton+Toronto',hours:'Mon–Sat 10am–9pm, Sun 11am–6pm',budget:false,mum:false,quote:'Right inside the mall — impossible to be more convenient. Great selection for a quick bottle of wine or a thoughtful hostess gift on the way home from work.'},
+  {id:'e9',lat:43.7112,lng:-79.3997,cat:'errand',catLabel:'Errands',name:'Wine Rack',addr:'2466 Yonge St',walk:7,rating:4.3,ct:141,phone:'+14164815226',maps:'https://maps.google.com/?q=Wine+Rack+2466+Yonge+Toronto',hours:'Daily 11am–11pm',budget:false,mum:false,quote:'Clarke is knowledgeable and genuinely loves Ontario wine. Great cider selection too. Open until 11pm — the perfect pick for a last-minute bottle after a long week.'},
+  {id:'e10',lat:43.7085,lng:-79.3982,cat:'errand',catLabel:'Errands',name:'Dollarama',addr:'2329 Yonge St',walk:4,rating:4.0,ct:475,phone:null,maps:'https://maps.google.com/?q=Dollarama+2329+Yonge+Toronto',hours:'Daily 8am–10pm (Sun 9am–9pm)',budget:true,mum:true,quote:'When you need something and need it now. Party supplies, kids crafts, household basics, stationery. At that price, always worth a quick sweep through.'},
+];
+
+// ── SECTIONS ────────────────────────────────────────────────────────────
+const SECTIONS = [
+  {cat:'recharge',label:'Recharge',sub:"Because you can't pour from an empty cup",emoji:'🌸',dot:'orange'},
+  {cat:'coffee',  label:'Coffee',  sub:'The fuel that keeps the empire running',    emoji:'☕',dot:'amber'},
+  {cat:'food',    label:'Food',    sub:'Quick, delicious — budget options flagged',  emoji:'🥗',dot:'teal'},
+  {cat:'beauty',  label:'Beauty',  sub:'Hair, nails, lashes, brows, flowers',        emoji:'💅',dot:'orange'},
+  {cat:'fitness', label:'Fitness', sub:'Move, sweat, reset',                         emoji:'🏋️',dot:'teal'},
+  {cat:'dental',  label:'Dental',  sub:'The best dentists in midtown Toronto',       emoji:'🦷',dot:'amber'},
+  {cat:'errand',  label:'Errands', sub:'Pharmacy, dry cleaning, gifts & wine',       emoji:'🛍️',dot:'teal'},
+];
+
+// ── STATE ────────────────────────────────────────────────────────────────
+let favs = [];
+try { favs = JSON.parse(localStorage.getItem('mte_v3') || '[]'); } catch(e) {}
+let activeCat = 'all';
+
+// ── LOCATION STATE ───────────────────────────────────────────────────────
+const OFFICE = { lat: 43.7065, lng: -79.4008 }; // 20 Eglinton Ave West
+let userLoc     = null;   // { lat, lng } when GPS active
+let locWatchId  = null;
+let usingGPS    = false;
+
+function haversineMin(from, toLat, toLng) {
+  const R = 6371000, WALK = 80; // 80 m/min ≈ 4.8 km/h
+  const toRad = d => d * Math.PI / 180;
+  const φ1 = toRad(from.lat), φ2 = toRad(toLat);
+  const Δφ = toRad(toLat - from.lat);
+  const Δλ = toRad(toLng - from.lng);
+  const a = Math.sin(Δφ/2)**2 + Math.cos(φ1)*Math.cos(φ2)*Math.sin(Δλ/2)**2;
+  const dist = R * 2 * Math.asin(Math.sqrt(a));
+  return Math.round(dist / WALK);
+}
+
+// Each place has office-calculated walk baked in as p.walk
+// When GPS is on we compute live from userLoc
+function getWalk(p) {
+  if (usingGPS && userLoc) return haversineMin(userLoc, p.lat, p.lng);
+  return p.walk;
+}
+
+function saveFavs() {
+  try { localStorage.setItem('mte_v3', JSON.stringify(favs)); } catch(e) {}
+  document.getElementById('hdr-count').textContent = favs.length;
+}
+
+function toggleFav(id, btn) {
+  const i = favs.indexOf(id);
+  if (i === -1) { favs.push(id); showToast('Added to My List ♥'); }
+  else           { favs.splice(i,1); showToast('Removed from My List'); }
+  saveFavs();
+  if (btn) { btn.classList.toggle('on', favs.includes(id)); btn.textContent = favs.includes(id)?'♥':'♡'; }
+}
+
+// ── LOCATION TOGGLE ──────────────────────────────────────────────────────
+function toggleLocation() {
+  if (usingGPS) {
+    stopGPS();
+  } else {
+    startGPS();
+  }
+}
+
+function startGPS() {
+  if (!navigator.geolocation) {
+    showToast('Location not supported on this device');
+    return;
+  }
+  setLocBar('searching', 'Requesting location access…', '');
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      userLoc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      usingGPS = true;
+      document.getElementById('locBtn').classList.add('active');
+      const acc = Math.round(pos.coords.accuracy);
+      setLocBar('active', '📍 Using your current location — walk times updated', `±${acc}m accuracy`);
+      // Watch for movement
+      locWatchId = navigator.geolocation.watchPosition(
+        p => {
+          userLoc = { lat: p.coords.latitude, lng: p.coords.longitude };
+          render();
+        },
+        null,
+        { enableHighAccuracy: true, maximumAge: 15000, timeout: 10000 }
+      );
+      render();
+    },
+    err => {
+      usingGPS = false;
+      userLoc  = null;
+      document.getElementById('locBtn').classList.remove('active');
+      const msgs = {
+        1: 'Location access denied — showing distances from your office.',
+        2: 'Location unavailable — showing distances from your office.',
+        3: 'Location request timed out — showing distances from your office.'
+      };
+      setLocBar('error', msgs[err.code] || 'Location error.', '');
+      setTimeout(() => hideLocBar(), 4000);
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+  );
+}
+
+function stopGPS() {
+  if (locWatchId !== null) { navigator.geolocation.clearWatch(locWatchId); locWatchId = null; }
+  usingGPS = false;
+  userLoc  = null;
+  document.getElementById('locBtn').classList.remove('active');
+  hideLocBar();
+  showToast('Switched back to office distances');
+  render();
+}
+
+function setLocBar(state, msg, sub) {
+  const bar  = document.getElementById('locBar');
+  const dot  = document.getElementById('locDot');
+  const msgEl = document.getElementById('locMsg');
+  const subEl = document.getElementById('locSub');
+  bar.classList.add('visible');
+  dot.className = 'loc-dot' + (state==='searching' ? ' searching' : state==='error' ? ' error' : '');
+  msgEl.textContent = msg;
+  subEl.textContent = sub;
+}
+
+function hideLocBar() {
+  document.getElementById('locBar').classList.remove('visible');
+}
+
+// ── HELPERS ──────────────────────────────────────────────────────────────
+function starsHtml(r) { return '★'.repeat(Math.floor(r)) + (r%1>=0.5?'½':''); }
+function fmtCt(n)     { return n>=1000 ? (n/1000).toFixed(1)+'k' : n; }
+function walkLabel(w) {
+  const txt = `🚶 ${w} min`;
+  if (w <= 10) return {cls:'walk-tag',          txt};
+  return               {cls:'walk-tag walk-far', txt};
+}
+
+// ── CARD ─────────────────────────────────────────────────────────────────
+function cardHtml(p, delay) {
+  const faved = favs.includes(p.id);
+  const w  = getWalk(p);
+  const wl = walkLabel(w);
+
+  let badge = '';
+  if (p.budget)      badge = '<span class="cbadge cbadge-budget">💚 Budget Friendly</span>';
+  else if (p.mum)    badge = '<span class="cbadge cbadge-mum">🌸 Mum Pick</span>';
+  const hasBadge = p.budget || p.mum;
+
+  const callBtn = p.phone
+    ? `<a class="btn cta" href="tel:${p.phone}">📞 Call</a>`
+    : `<span class="btn" style="opacity:.3;pointer-events:none">No phone</span>`;
+
+  return `<div class="card" style="animation-delay:${delay}ms">
+    ${badge}
+    <div class="card-top"${hasBadge?' style="padding-right:130px"':''}>
+      <div class="card-name">${p.name}</div>
+      <button class="heart${faved?' on':''}" onclick="toggleFav('${p.id}',this)">${faved?'♥':'♡'}</button>
+    </div>
+    <div class="card-meta-top">
+      <span class="${wl.cls}">${wl.txt}</span>
+      <span class="sep">·</span>
+      <span class="addr-text">${p.addr}</span>
+    </div>
+    <div class="card-meta">
+      <span class="stars">${starsHtml(p.rating)}</span>
+      <span class="rating-num">${p.rating.toFixed(1)}</span>
+      <span class="rating-ct">(${fmtCt(p.ct)} reviews)</span>
+      <span class="pill pill-open">✓ Lunch</span>
+      <span class="pill pill-hours">${p.hours.split(',')[0]}</span>
+    </div>
+    <div class="quote">${p.quote}</div>
+    <div class="card-actions">
+      ${callBtn}
+      <a class="btn" href="${p.maps}" target="_blank" rel="noopener">🗺 Directions</a>
+    </div>
+  </div>`;
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+function render() {
+  const el = document.getElementById('mainEl');
+  const secs = activeCat==='all' ? SECTIONS : SECTIONS.filter(s=>s.cat===activeCat);
+  let html = '';
+  secs.forEach(sec => {
+    const places = DATA.filter(p=>p.cat===sec.cat);
+    if (!places.length) return;
+    const sorted = [...places].sort((a,b)=>getWalk(a)-getWalk(b));
+    html += `<div class="sec-wrap">
+      <div class="sec-header">
+        <span class="sec-emoji">${sec.emoji}</span>
+        <div class="sec-dot ${sec.dot}"></div>
+        <div class="sec-info">
+          <div class="sec-title">${sec.label}</div>
+          <div class="sec-sub">${sec.sub}</div>
+        </div>
+        <div class="sec-count">${places.length} spots</div>
+      </div>
+      <div class="grid">${sorted.map((p,i)=>cardHtml(p,i*35)).join('')}</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+  saveFavs();
+}
+
+// ── FILTER ────────────────────────────────────────────────────────────────
+function doFilter(btn, cat) {
+  activeCat = cat;
+  document.querySelectorAll('.fp').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+  window.scrollTo({top:118, behavior:'smooth'});
+}
+
+// ── MODAL ─────────────────────────────────────────────────────────────────
+function openModal() {
+  const list = document.getElementById('modal-list');
+  if (!favs.length) {
+    list.innerHTML = '<div class="modal-empty">Nothing saved yet.<br>Tap ♡ on any card to add it here.</div>';
+  } else {
+    list.innerHTML = favs.map(id=>{
+      const p = DATA.find(x=>x.id===id); if(!p) return '';
+      const w = getWalk(p);
+      const callHtml = p.phone ? `<a class="mi-call" href="tel:${p.phone}">📞 Call</a>` : '';
+      return `<div class="modal-item">
+        <div>
+          <div class="mi-name">${p.name}</div>
+          <div class="mi-meta">${p.catLabel} · ★ ${p.rating.toFixed(1)} · 🚶 ${w} min</div>
+        </div>
+        <div class="mi-actions">${callHtml}<a class="mi-map" href="${p.maps}" target="_blank">🗺 Map</a></div>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal() { document.getElementById('overlay').classList.remove('open'); }
+document.getElementById('overlay').addEventListener('click', e=>{
+  if (e.target.id==='overlay') closeModal();
+});
+
+// ── TOAST ─────────────────────────────────────────────────────────────────
+let _tt;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(_tt); _tt = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
